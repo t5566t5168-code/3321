@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>猜拳遊戲</title>
+
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        background: #222;
+        color: white;
+        margin-top: 50px;
+    }
+
+    button {
+        font-size: 24px;
+        padding: 15px 30px;
+        margin: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+    }
+
+    #result {
+        margin-top: 30px;
+        font-size: 32px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>猜拳遊戲 ✊✋✌️</h1>
+
+<button onclick="play('石頭')">✊ 石頭</button>
+<button onclick="play('布')">✋ 布</button>
+<button onclick="play('剪刀')">✌️ 剪刀</button>
+
+<div id="result"></div>
+
+<script>
+
+function play(player) {
+
+    const choices = ['石頭', '布', '剪刀'];
+
+    const computer =
+        choices[Math.floor(Math.random() * 3)];
+
+    let result = '';
+
+    if (player === computer) {
+        result = '平手！';
+    }
+    else if (
+        (player === '石頭' && computer === '剪刀') ||
+        (player === '布' && computer === '石頭') ||
+        (player === '剪刀' && computer === '布')
+    ) {
+        result = '你贏了！';
+    }
+    else {
+        result = '你輸了！';
+    }
+
+    document.getElementById('result').innerHTML =
+        `
+        你出了：${player}<br>
+        電腦出了：${computer}<br><br>
+        <strong>${result}</strong>
+        `;
+}
+
+</script>
+
+</body>
+</html>
